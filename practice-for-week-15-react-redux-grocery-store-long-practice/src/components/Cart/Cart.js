@@ -3,14 +3,14 @@ import './Cart.css';
 import { useSelector } from 'react-redux';
 
 function Cart() {
-  let cart = useSelector((state) => Object.values(state.cart));
-  const produce = {};
+  const cart = useSelector((state) => Object.values(state.cart));
+  const produce = useSelector((state) => Object.values(state.produce));
 
   const cartItems = Object.values(cart)
     .map(item => {
       return {
         ...item,
-        ...produce[item.id]
+        ...produce[item.id - 1]
       };
     });
 

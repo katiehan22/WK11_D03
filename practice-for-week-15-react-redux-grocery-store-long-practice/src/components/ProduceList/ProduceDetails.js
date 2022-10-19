@@ -18,7 +18,6 @@ function ProduceDetails({ produce }) {
           className={"plus-button" + (cartItem ? " selected" : "")}
           onClick={e => {
             dispatch(addItem(produce.id));
-            console.log(produce.id);
           }}
         >
           <i className="fas fa-plus" />
