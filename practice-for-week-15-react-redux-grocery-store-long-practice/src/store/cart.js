@@ -13,7 +13,7 @@ export default function cartReducer(state = {}, action) {
 
   switch (action.type) {
     case ADD_ITEM:
-      newState[action.itemId] = action.item;
+      newState[action.itemId] = {id: action.itemId, count: 1};
       return newState;
     default:
       return state;
