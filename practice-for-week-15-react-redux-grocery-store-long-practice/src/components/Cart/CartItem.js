@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { removeItem } from '../../store/cart'
+import { removeItem, incrementCount, decrementCount } from '../../store/cart'
 
 function CartItem({ item }) {
   const [count, setCount] = useState(item.count);
@@ -18,12 +18,18 @@ function CartItem({ item }) {
           type="number"
           value={count}
         />
-        <button
+        <button 
+          onClick={e => {
+            dispatch(incrementCount(item.id));
+          }}
           className="cart-item-button"
         >
           +
         </button>
         <button
+          onClick={e => {
+            dispatch(decrementCount(item.id));
+          }}
           className="cart-item-button"
         >
           -

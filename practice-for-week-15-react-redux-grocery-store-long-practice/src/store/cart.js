@@ -1,5 +1,7 @@
 const ADD_ITEM = 'ADD_ITEM';
 const REMOVE_ITEM = 'REMOVE_ITEM';
+const INCREMENT_COUNT = 'INCREMENT_COUNT';
+const DECREMENT_COUNT = 'DECREMENT_COUNT'
 
 export const addItem = (itemId) => {
   return {
@@ -15,6 +17,20 @@ export const removeItem = (itemId) => {
   }
 }
 
+export const incrementCount = (itemId) => {
+  return {
+    type: INCREMENT_COUNT,
+    itemId
+  }
+}
+
+export const decrementCount = (itemId) => {
+  return {
+    type: DECREMENT_COUNT,
+    itemId
+  }
+}
+
 export default function cartReducer(state = {}, action) {
   Object.freeze(state);
   const newState = {...state};
@@ -22,6 +38,12 @@ export default function cartReducer(state = {}, action) {
   switch (action.type) {
     case ADD_ITEM:
       newState[action.itemId] = {id: action.itemId, count: 1};
+      return newState;
+    case INCREMENT_COUNT:
+      newState[action.itemId].count += 1;
+      return newState;
+    case DECREMENT_COUNT:
+      newState[action.itemId].count -= 1;
       return newState;
     case REMOVE_ITEM:
       delete newState[action.itemId];
