@@ -46,13 +46,20 @@ export default function cartReducer(state = {}, action) {
 
   switch (action.type) {
     case ADD_ITEM:
-      newState[action.itemId] = {id: action.itemId, count: 1};
+      if (newState[action.itemId]) {
+        newState[action.itemId].count++;
+      } else {
+        newState[action.itemId] = {id: action.itemId, count: 1};
+      }
       return newState;
     case INCREMENT_COUNT:
-      newState[action.itemId].count ++;
+      newState[action.itemId].count++;
       return newState;
     case DECREMENT_COUNT:
-      newState[action.itemId].count --;
+      newState[action.itemId].count--;
+      if (newState[action.itemId].count === 0) {
+        delete newState[action.itemId];
+      }
       return newState;
     case CHANGE_COUNT:
       newState[action.itemId].count = action.newCount;
