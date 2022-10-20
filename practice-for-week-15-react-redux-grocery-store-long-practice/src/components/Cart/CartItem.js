@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { removeItem, incrementCount, decrementCount } from '../../store/cart'
+import { removeItem, incrementCount, decrementCount, changeCount } from '../../store/cart'
 
 function CartItem({ item }) {
   const [count, setCount] = useState(item.count);
@@ -17,6 +17,9 @@ function CartItem({ item }) {
         <input
           type="number"
           value={count}
+          onChange= {e => {
+            dispatch(changeCount(item.id, e.target.value));
+          }}
         />
         <button 
           onClick={e => {
